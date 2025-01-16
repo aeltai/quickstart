@@ -23,7 +23,7 @@ variable "aws_session_token" {
 variable "aws_region" {
   type        = string
   description = "AWS region used for all resources"
-  default     = "us-east-1"
+  default     = "eu-central-1"
 }
 
 variable "aws_zone" {
