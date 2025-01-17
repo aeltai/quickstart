@@ -76,7 +76,7 @@ No modules.
 | <a name="input_cert_manager_version"></a> [cert\_manager\_version](#input\_cert\_manager\_version) | Version of cert-manager to install alongside NeuVector (format: 0.0.0) | `string` | `"1.11.0"` | no |
 | <a name="input_install_rancher"></a> [install\_rancher](#input\_install\_rancher) | Also install Rancher and setup SSO for NeuVector | `bool` | `false` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Instance type used for all EC2 instances | `string` | `"t3a.xlarge"` | no |
-| <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | Kubernetes version to use | `string` | `"v1.24.14+rke2r1"` | no |
+| <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | Kubernetes version to use | `string` | `"v1.31.3+rke2r1"` | no |
 | <a name="input_neuvector_admin_password"></a> [neuvector\_admin\_password](#input\_neuvector\_admin\_password) | Admin password for NeuVector | `string` | `"AI2zSYMFuCZ3HUeyNNMj1urUpCSEfgE0"` | no |
 | <a name="input_neuvector_chart_version"></a> [neuvector\_chart\_version](#input\_neuvector\_chart\_version) | NeuVector helm chart version | `string` | `"2.6.1"` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix added to names of all resources | `string` | `"neuvector-quickstart"` | no |

@@ -54,7 +54,7 @@ Both instances will be accessible over SSH using the SSH keys `id_rsa` and `id_r
 | <a name="input_rancher_version"></a> [rancher\_version](#input\_rancher\_version) | Rancher server version (format: v0.0.0) | `string` | `"2.7.9"` | no |
 | <a name="input_scw_region"></a> [scw\_region](#input\_scw\_region) | Scaleway region used for all resources | `string` | `"fr-par"` | no |
 | <a name="input_scw_zone"></a> [scw\_zone](#input\_scw\_zone) | Scaleway zone used for all resources | `string` | `"fr-par-1"` | no |
-| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.24.14+rke2r1"` | no |
+| <a name="input_workload_kubernetes_version"></a> [workload\_kubernetes\_version](#input\_workload\_kubernetes\_version) | Kubernetes version to use for managed workload cluster | `string` | `"v1.31.3+rke2r1"` | no |
 
 ## Outputs
 

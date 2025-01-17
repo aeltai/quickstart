@@ -119,7 +119,7 @@ resource "aws_instance" "rancher_server" {
     connection {
       type        = "ssh"
       host        = self.public_ip
-      user        = local.node_username
+      user        = var.node_username
       private_key = tls_private_key.global_key.private_key_pem
     }
   }
@@ -136,7 +136,7 @@ module "rancher_common" {
 
   node_public_ip             = aws_instance.rancher_server.public_ip
   node_internal_ip           = aws_instance.rancher_server.private_ip
-  node_username              = local.node_username
+  node_username              = var.node_username
   ssh_private_key_pem        = tls_private_key.global_key.private_key_pem
   rancher_kubernetes_version = var.rancher_kubernetes_version
 
@@ -152,7 +152,7 @@ module "rancher_common" {
   workload_cluster_name       = "quickstart-aws-custom"
 }
 
-# AWS EC2 instance for creating a single node workload cluster
+# AWS EC2 instance for creating a two node workload cluster
 resource "aws_instance" "quickstart_node" {
   depends_on = [
     aws_route_table_association.rancher_route_table_association
@@ -186,13 +186,57 @@ resource "aws_instance" "quickstart_node" {
     connection {
       type        = "ssh"
       host        = self.public_ip
-      user        = local.node_username
+      user        = var.node_username
       private_key = tls_private_key.global_key.private_key_pem
     }
   }
 
   tags = {
     Name    = "${var.prefix}-quickstart-node"
+    Creator = "rancher-quickstart"
+  }
+}
+
+resource "aws_instance" "quickstart_node_2" {
+  depends_on = [
+    aws_route_table_association.rancher_route_table_association
+  ]
+  ami           = data.aws_ami.sles.id
+  instance_type = var.instance_type
+
+  key_name                    = aws_key_pair.quickstart_key_pair.key_name
+  vpc_security_group_ids      = [aws_security_group.rancher_sg_allowall.id]
+  subnet_id                   = aws_subnet.rancher_subnet.id
+  associate_public_ip_address = true
+
+  root_block_device {
+    volume_size = 40
+  }
+
+  user_data = templatefile(
+       "${path.module}/files/userdata_quickstart_node.template",
+    {
+      register_command = module.rancher_common.custom_cluster_command
+    }
+  )
+
+  provisioner "remote-exec" {
+    inline = [
+      "echo 'Waiting for cloud-init to complete...'",
+      "cloud-init status --wait > /dev/null",
+      "echo 'Completed cloud-init!'",
+    ]
+
+    connection {
+      type        = "ssh"
+      host        = self.public_ip
+      user        = var.node_username
+      private_key = tls_private_key.global_key.private_key_pem
+    }
+  }
+
+  tags = {
+    Name    = "${var.prefix}-quickstart-node-2"
     Creator = "rancher-quickstart"
   }
 }

@@ -50,6 +50,12 @@ variable "windows_instance_type" {
   default     = "t3a.large"
 }
 
+variable "quickstart_node_2_instance_type" {
+  description = "Instance type for the second quickstart node"
+  type        = string
+  default     = "t3a.medium"
+}
+
 variable "rancher_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for Rancher server cluster"
@@ -59,7 +65,7 @@ variable "rancher_kubernetes_version" {
 variable "workload_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for managed workload cluster"
-  default     = "v1.24.14+rke2r1"
+  default     = "v1.31.3+rke2r1"
 }
 
 variable "cert_manager_version" {
@@ -92,8 +98,8 @@ variable "add_windows_node" {
   description = "Add a windows node to the workload cluster"
   default     = false
 }
-
-# Local variables used to reduce repetition
-locals {
-  node_username = "ec2-user"
+variable "node_username" {
+  description = "Username for the EC2 instances"
+  type        = string
+  default     = "ec2-user"  # or any other default username you prefer
 }

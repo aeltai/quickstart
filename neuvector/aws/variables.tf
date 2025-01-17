@@ -63,7 +63,7 @@ variable "instance_type" {
 variable "kubernetes_version" {
   type        = string
   description = "Kubernetes version to use"
-  default     = "v1.24.14+rke2r1"
+  default     = "v1.31.3+rke2r1"
 }
 
 variable "neuvector_chart_version" {

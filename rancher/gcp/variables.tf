@@ -43,7 +43,7 @@ variable "rancher_kubernetes_version" {
 variable "workload_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for managed workload cluster"
-  default     = "v1.24.14+rke2r1"
+  default     = "v1.31.3+rke2r1"
 }
 
 variable "cert_manager_version" {
