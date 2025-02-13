@@ -41,19 +41,14 @@ variable "prefix" {
 variable "instance_type" {
   type        = string
   description = "Instance type used for all EC2 instances"
-  default     = "t3a.medium"
-}
-
-variable "windows_instance_type" {
-  type        = string
-  description = "Instance type used for all EC2 windows instances"
   default     = "t3a.large"
 }
+
 
 variable "quickstart_node_2_instance_type" {
   description = "Instance type for the second quickstart node"
   type        = string
-  default     = "t3a.medium"
+  default     = "t3a.large"
 }
 
 variable "rancher_kubernetes_version" {
@@ -102,4 +97,10 @@ variable "node_username" {
   description = "Username for the EC2 instances"
   type        = string
   default     = "ec2-user"  # or any other default username you prefer
+}
+
+variable "additional_worker_nodes_count" {
+  type        = number
+  description = "Number of additional worker nodes to add"
+  default     = 2
 }
